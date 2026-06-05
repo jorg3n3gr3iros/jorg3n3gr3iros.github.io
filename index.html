@@ -176,6 +176,44 @@
   .proj-info p{color:var(--muted);font-size:.92rem;margin-bottom:18px;flex:1}
   .proj-info .tags{margin-top:auto}
 
+  /* ===== MEDIA (real assets) ===== */
+  .feature-media video,.feature-media img,.proj-thumb video,.proj-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .project-block{margin-top:60px;padding-top:60px;border-top:1px solid var(--line)}
+  .project-block:first-of-type{border-top:none;padding-top:0}
+  .pb-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:8px}
+  .pb-num{font-family:var(--mono);font-size:.78rem;color:var(--muted-2);margin-bottom:10px}
+  .pb-head h3{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.01em}
+  .pb-sub{color:var(--muted);font-family:var(--mono);font-size:.82rem;margin:6px 0 18px}
+  .pb-desc{max-width:760px;color:#c5c9ce;font-size:1.04rem;margin-bottom:30px}
+  .pb-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+  .link-btn{font-family:var(--mono);font-size:.82rem;text-decoration:none;color:var(--accent);border:1px solid var(--accent-dim);padding:11px 20px;border-radius:8px;transition:all .2s;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+  .link-btn:hover{background:var(--accent);color:#0a0b0d;box-shadow:0 0 20px rgba(184,255,58,.3)}
+  /* main video frame */
+  .vframe{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;position:relative}
+  .vframe video{width:100%;height:auto;display:block}
+  /* responsive youtube */
+  .yt{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}
+  .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  /* media gallery grids */
+  .media-grid{display:grid;gap:18px;margin-top:8px}
+  .mg-2{grid-template-columns:repeat(2,1fr)}
+  .mg-3{grid-template-columns:repeat(3,1fr)}
+  .media-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:all .25s}
+  .media-card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+  .media-card .mc-img{aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--line);background:#000}
+  .media-card .mc-body{padding:18px 20px}
+  .media-card h4{font-family:var(--display);font-weight:600;font-size:1.08rem;margin-bottom:6px}
+  .media-card p{color:var(--muted);font-size:.88rem}
+  /* vertical video pair */
+  .vert-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:620px}
+  .vert-pair .vframe video{aspect-ratio:9/16;object-fit:cover}
+  .nft-layout{display:grid;grid-template-columns:1.3fr .9fr;gap:26px;align-items:start}
+  .yt-item h4{font-family:var(--display);font-weight:600;font-size:1.05rem;margin:13px 0 5px}
+  .yt-item p{color:var(--muted);font-size:.86rem;line-height:1.5}
+  .vcap{padding-top:4px}
+  .vcap h4{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:10px}
+  .vcap p{color:var(--muted);font-size:.95rem}
+
   /* ===== CONTACT ===== */
   .contact{text-align:center;padding:120px 0}
   .contact h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:20px}
@@ -201,6 +239,9 @@
     .feature{grid-template-columns:1fr}
     .feature-media{border-right:none;border-bottom:1px solid var(--line);min-height:260px}
     .proj-grid{grid-template-columns:1fr}
+    .mg-3,.mg-2{grid-template-columns:1fr}
+    .nft-layout{grid-template-columns:1fr}
+    .vert-pair{max-width:none}
     .contact-cards{grid-template-columns:1fr}
     .nav-links{display:none}
     .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg-2);padding:24px 28px;gap:20px;border-bottom:1px solid var(--line)}
@@ -359,10 +400,10 @@
       <div class="tl-item reveal">
         <div class="tl-period">10+ YEARS</div>
         <div class="tl-role">Co-founder</div>
-        <div class="tl-company"><b>Invectors Studios</b></div>
+        <div class="tl-company"><b>Invector</b> · Reusable Unity tools &amp; templates</div>
         <div class="tl-list tags">
+          <span class="tag">Third/First person controllers</span><span class="tag">Cover system</span>
           <span class="tag">Concept → delivery</span><span class="tag">Technical leadership</span>
-          <span class="tag">Problem-solving &amp; execution</span>
         </div>
       </div>
     </div>
@@ -374,65 +415,128 @@
   <div class="wrap">
     <div class="label reveal">04 — selected work</div>
     <h2 class="reveal">Projects</h2>
-    <p class="lead reveal">A snapshot of titles, experiences and tools I've built. Swap the placeholders for your own screenshots, GIFs and build links.</p>
+    <p class="lead reveal">Selected titles, interactive installations and tools — with real captures from production.</p>
 
-    <!-- Featured -->
-    <div class="feature reveal">
-      <div class="feature-media">
-        <div class="placeholder">
-          <span class="ico">▱</span>
-          BR1_INFINITY · gameplay capture
-          <span class="note">↳ add screenshot / trailer here</span>
+    <!-- ===== 01 · BR1 INFINITY ===== -->
+    <div class="project-block reveal">
+      <div class="pb-num">PROJECT 01 · FEATURED</div>
+      <div class="pb-head">
+        <div>
+          <h3>BR1 Infinity</h3>
+          <div class="pb-sub">Senior Developer @ Bravo Ready · Unity · Competitive multiplayer</div>
+        </div>
+        <a class="link-btn" href="https://magiceden.io/marketplace/br1" target="_blank" rel="noopener">View on Magic Eden ↗</a>
+      </div>
+      <p class="pb-desc">A competitive multiplayer shooter built in Unity. I worked across gameplay systems, UI/UX, custom shaders and the automated content pipeline behind the game's in-game economy — owning features from concept to ship.</p>
+      <div class="pb-tags tags">
+        <span class="tag hl">Unity</span><span class="tag hl">Multiplayer</span><span class="tag">Gameplay systems</span><span class="tag">Shader Graph</span><span class="tag">UI/UX</span><span class="tag">Tools</span>
+      </div>
+
+      <div class="vframe"><video controls preload="none" poster="assets/poster-trailer.jpg"><source src="assets/br1-trailer.mp4" type="video/mp4"></video></div>
+
+      <div class="media-grid mg-3" style="margin-top:26px">
+        <div class="media-card">
+          <div class="mc-img"><img src="assets/br1-inventory-1.jpg" alt="Inventory UX problem analysis" loading="lazy"></div>
+          <div class="mc-body"><h4>Inventory UX — problem</h4><p>Mapping the usability gaps in the original weapon &amp; skin inventory flow.</p></div>
+        </div>
+        <div class="media-card">
+          <div class="mc-img"><img src="assets/br1-inventory-2.jpg" alt="Inventory UX redesigned flow" loading="lazy"></div>
+          <div class="mc-body"><h4>Inventory UX — solution</h4><p>Reworked layout with clear category, weapon and skin selection states.</p></div>
+        </div>
+        <div class="media-card">
+          <div class="mc-img"><img src="assets/br1-blockaim.jpg" alt="Block aim system design diagram" loading="lazy"></div>
+          <div class="mc-body"><h4>Block-aim system</h4><p>Collider-based design solving a third/first-person aiming edge case near walls.</p></div>
         </div>
       </div>
-      <div class="feature-body">
-        <span class="pill">FEATURED · MULTIPLAYER</span>
-        <h3>BR1 Infinity</h3>
-        <div class="sub">Senior Developer @ Bravo Ready · Unity</div>
-        <p>A multiplayer title built with the Unity engine. I worked across the gameplay and content layers — from core mechanics to the automated systems that fed the game's economy.</p>
-        <ul class="feat-points">
-          <li>Gameplay mechanics &amp; multiplayer integration</li>
-          <li>Internal tools for game design</li>
-          <li>Custom shaders authored in Shader Graph</li>
-          <li>Automated character &amp; weapon skin generation pipelines (NFT)</li>
-          <li>Character rigging, skinning &amp; animation</li>
-        </ul>
-        <a href="#" class="btn btn-ghost">Add project link →</a>
+
+      <div class="media-grid mg-2" style="margin-top:18px;align-items:start">
+        <div class="vframe"><video controls preload="none" poster="assets/poster-shader.jpg"><source src="assets/shader-scope.mp4" type="video/mp4"></video></div>
+        <div class="vcap">
+          <h4>Custom scope shader</h4>
+          <p>A shader authored in Shader Graph that delivers a clean, high-FPS first-person scope view — readable optics without the performance cost of a render-texture approach.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Grid -->
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
-        <div class="proj-info">
-          <h4>Interactive Installations</h4>
-          <p>Advergames and interactive applications for PC, Android and VR — including Kinect motion-based experiences and RFID-integrated installs.</p>
-          <div class="tags"><span class="tag hl">Kinect</span><span class="tag">VR</span><span class="tag">RFID</span></div>
+    <!-- ===== 02 · NFT PIPELINE ===== -->
+    <div class="project-block reveal">
+      <div class="pb-num">PROJECT 02</div>
+      <div class="pb-head">
+        <div>
+          <h3>Automated NFT Generation Pipeline</h3>
+          <div class="pb-sub">Bravo Ready · Unity · Tooling &amp; automation</div>
+        </div>
+        <a class="link-btn" href="https://magiceden.io/marketplace/br1" target="_blank" rel="noopener">BR1 collection ↗</a>
+      </div>
+      <p class="pb-desc">An automated pipeline that generates BR1 operative characters and weapon skins as NFTs — trait-driven and rendered in-engine. It turned a manual art workflow into a repeatable, hands-off system that produced the entire on-chain collection.</p>
+      <div class="pb-tags tags">
+        <span class="tag hl">Automation</span><span class="tag">Render pipeline</span><span class="tag">Trait-driven</span><span class="tag">Unity Editor tools</span>
+      </div>
+      <div class="nft-layout">
+        <div class="vframe"><img src="assets/nft-tool.jpg" alt="NFT render tool in the Unity editor" loading="lazy" style="width:100%;height:auto"></div>
+        <div class="vert-pair">
+          <div class="vframe"><video controls muted loop playsinline preload="none" poster="assets/poster-nft-1.jpg"><source src="assets/nft-render-1.mp4" type="video/mp4"></video></div>
+          <div class="vframe"><video controls muted loop playsinline preload="none" poster="assets/poster-nft-2.jpg"><source src="assets/nft-render-2.mp4" type="video/mp4"></video></div>
         </div>
       </div>
-      <div class="proj-card reveal">
-        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
-        <div class="proj-info">
-          <h4>Asset Generation Pipeline</h4>
-          <p>Fully automated pipelines that generate character and weapon skins at scale, turning manual art steps into a repeatable, hands-off process.</p>
-          <div class="tags"><span class="tag hl">Automation</span><span class="tag">Tooling</span><span class="tag">Pipeline</span></div>
+    </div>
+
+    <!-- ===== 03 · NOVA INTERATIVA ===== -->
+    <div class="project-block reveal">
+      <div class="pb-num">PROJECT 03</div>
+      <div class="pb-head">
+        <div>
+          <h3>Interactive Installations</h3>
+          <div class="pb-sub">Senior Developer @ Nova Interativa · Advergames &amp; interactive apps</div>
+        </div>
+        <a class="link-btn" href="https://www.novainterativa.net/produtos/p%C3%AAnalti-interativo" target="_blank" rel="noopener">Kinect Penalty ↗</a>
+      </div>
+      <p class="pb-desc">A decade of advergames and interactive experiences for PC, Android and VR — motion-based (Kinect) games, real-time multi-display systems and immersive VR built for brands and live events.</p>
+      <div class="pb-tags tags">
+        <span class="tag hl">Kinect</span><span class="tag hl">VR</span><span class="tag">Meta Quest</span><span class="tag">RFID</span><span class="tag">Multi-display</span><span class="tag">Unity</span>
+      </div>
+      <div class="media-grid mg-3">
+        <div class="yt-item">
+          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/88fLVLEmocI" title="Claw machine interactive system" allowfullscreen></iframe></div>
+          <h4>Claw Machine System</h4>
+          <p>A complete interactive claw-machine system built end to end.</p>
+        </div>
+        <div class="yt-item">
+          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/ZkEZt97ouX4" title="Immersive Meta Quest application" allowfullscreen></iframe></div>
+          <h4>Immersive VR · Meta Quest</h4>
+          <p>An immersive application developed for the Meta Quest headset.</p>
+        </div>
+        <div class="yt-item">
+          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/RjFqgSYH3mo" title="Real-time interactive display" allowfullscreen></iframe></div>
+          <h4>Real-time Interactive Display</h4>
+          <p>Multi-display setup with live signing on one screen mirrored on another.</p>
         </div>
       </div>
-      <div class="proj-card reveal">
-        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
-        <div class="proj-info">
-          <h4>VR Experiences</h4>
-          <p>Immersive virtual reality applications and games — interaction design and real-time performance optimization for head-mounted displays.</p>
-          <div class="tags"><span class="tag hl">VR</span><span class="tag">Unity</span><span class="tag">Optimization</span></div>
+    </div>
+
+    <!-- ===== 04 · INVECTOR ===== -->
+    <div class="project-block reveal">
+      <div class="pb-num">PROJECT 04</div>
+      <div class="pb-head">
+        <div>
+          <h3>Invector — Tools &amp; Templates</h3>
+          <div class="pb-sub">Co-founder · Reusable Unity gameplay systems</div>
         </div>
       </div>
-      <div class="proj-card reveal">
-        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
-        <div class="proj-info">
-          <h4>Your next project</h4>
-          <p>Add a personal game, jam entry, prototype or open-source tool here — anything that shows how you think and build.</p>
-          <div class="tags"><span class="tag">Add tags</span></div>
+      <p class="pb-desc">As co-founder of Invector, I helped build reusable Unity templates and gameplay systems — third/first-person controllers and a cover system — used by other developers to kick-start their own games.</p>
+      <div class="pb-tags tags">
+        <span class="tag hl">Unity</span><span class="tag hl">C#</span><span class="tag">Character controllers</span><span class="tag">Cover system</span><span class="tag">Gameplay frameworks</span>
+      </div>
+      <div class="media-grid mg-2">
+        <div class="yt-item">
+          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/xiQUFkW4_Qs?start=68" title="Games made with Invector assets" allowfullscreen></iframe></div>
+          <h4>Built with Invector — Showcase</h4>
+          <p>A showcase of games created by developers using Invector assets.</p>
+        </div>
+        <div class="yt-item">
+          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/wbgq_4mfuvs?start=20" title="Cover system overview" allowfullscreen></iframe></div>
+          <h4>Cover System — Overview</h4>
+          <p>Technical overview of the cover-shooter system.</p>
         </div>
       </div>
     </div>
