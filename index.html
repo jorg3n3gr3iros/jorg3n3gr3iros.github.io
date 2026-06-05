@@ -68,14 +68,16 @@
   .logo{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.04em;display:flex;align-items:center;gap:9px}
   .logo .dot{width:9px;height:9px;background:var(--accent);border-radius:2px;box-shadow:0 0 12px var(--accent);animation:pulse 2.4s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
-  .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;position:relative;font-family:var(--body);font-weight:500;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px}
+  .nav-links a .ix{font-family:var(--mono);font-size:.64rem;color:var(--accent-dim);transition:color .2s}
   .nav-links a:hover{color:var(--text)}
-  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}
+  .nav-links a:hover .ix{color:var(--accent)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--accent);transition:width .25s}
   .nav-links a:hover::after{width:100%}
-  .nav-cta{font-family:var(--mono);font-size:.78rem;color:var(--accent)!important;border:1px solid var(--accent-dim);padding:7px 14px;border-radius:7px;transition:all .2s}
+  .nav-cta{font-family:var(--body)!important;font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)!important;border:1px solid var(--accent-dim);padding:8px 16px;border-radius:7px;transition:all .2s}
   .nav-cta:hover{background:var(--accent);color:#0a0b0d!important;box-shadow:0 0 18px rgba(184,255,58,.35)}
-  .nav-cta::after{display:none}
+  .nav-cta .ix{display:none}
   .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
   .burger span{width:24px;height:2px;background:var(--text);transition:.3s}
 
@@ -202,6 +204,13 @@
   .yt-thumb:hover .yt-play{transform:translate(-50%,-50%) scale(1.12);box-shadow:0 0 28px rgba(184,255,58,.55)}
   .yt-play svg{width:23px;height:23px;margin-left:3px;fill:#0a0b0d}
   .yt-tag{position:absolute;bottom:11px;right:11px;z-index:2;font-family:var(--mono);font-size:.66rem;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:5px;letter-spacing:.04em}
+  /* lightbox */
+  img.zoomable{cursor:zoom-in}
+  #lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(5,6,8,.93);backdrop-filter:blur(6px);padding:32px;cursor:zoom-out}
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:95%;max-height:90%;border:1px solid var(--line-strong);border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+  #lightbox .lb-close{position:absolute;top:22px;right:26px;width:44px;height:44px;border:1px solid var(--line-strong);background:rgba(255,255,255,.04);color:var(--text);border-radius:10px;font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--mono);transition:all .2s}
+  #lightbox .lb-close:hover{border-color:var(--accent);color:var(--accent)}
   /* media gallery grids */
   .media-grid{display:grid;gap:18px;margin-top:8px}
   .mg-2{grid-template-columns:repeat(2,1fr)}
@@ -263,11 +272,11 @@
   <div class="nav-inner">
     <div class="logo"><span class="dot"></span>JORGE NEGREIROS</div>
     <div class="nav-links" id="navLinks">
-      <a href="#about">// about</a>
-      <a href="#skills">// skills</a>
-      <a href="#experience">// experience</a>
-      <a href="#work">// work</a>
-      <a href="#contact" class="nav-cta">get in touch</a>
+      <a href="#about"><span class="ix">01</span>About</a>
+      <a href="#skills"><span class="ix">02</span>Skills</a>
+      <a href="#experience"><span class="ix">03</span>Experience</a>
+      <a href="#work"><span class="ix">04</span>Work</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
     <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
   </div>
@@ -444,15 +453,15 @@
 
       <div class="media-grid mg-3" style="margin-top:26px">
         <div class="media-card">
-          <div class="mc-img"><img src="assets/br1-inventory-1.jpg" alt="Inventory UX problem analysis" loading="lazy"></div>
+          <div class="mc-img"><img class="zoomable" src="assets/br1-inventory-1.jpg" alt="Inventory UX problem analysis" loading="lazy"></div>
           <div class="mc-body"><h4>Inventory UX — problem</h4><p>Mapping the usability gaps in the original weapon &amp; skin inventory flow.</p></div>
         </div>
         <div class="media-card">
-          <div class="mc-img"><img src="assets/br1-inventory-2.jpg" alt="Inventory UX redesigned flow" loading="lazy"></div>
+          <div class="mc-img"><img class="zoomable" src="assets/br1-inventory-2.jpg" alt="Inventory UX redesigned flow" loading="lazy"></div>
           <div class="mc-body"><h4>Inventory UX — solution</h4><p>Reworked layout with clear category, weapon and skin selection states.</p></div>
         </div>
         <div class="media-card">
-          <div class="mc-img"><img src="assets/br1-blockaim.jpg" alt="Block aim system design diagram" loading="lazy"></div>
+          <div class="mc-img"><img class="zoomable" src="assets/br1-blockaim.jpg" alt="Block aim system design diagram" loading="lazy"></div>
           <div class="mc-body"><h4>Block-aim system</h4><p>Collider-based design solving a third/first-person aiming edge case near walls.</p></div>
         </div>
       </div>
@@ -481,7 +490,7 @@
         <span class="tag hl">Automation</span><span class="tag">Render pipeline</span><span class="tag">Trait-driven</span><span class="tag">Unity Editor tools</span>
       </div>
       <div class="nft-layout">
-        <div class="vframe"><img src="assets/nft-tool.jpg" alt="NFT render tool in the Unity editor" loading="lazy" style="width:100%;height:auto"></div>
+        <div class="vframe"><img class="zoomable" src="assets/nft-tool.jpg" alt="NFT render tool in the Unity editor" loading="lazy" style="width:100%;height:auto"></div>
         <div class="vert-pair">
           <div class="vframe"><video controls muted loop playsinline preload="none" poster="assets/poster-nft-1.jpg"><source src="assets/nft-render-1.mp4" type="video/mp4"></video></div>
           <div class="vframe"><video controls muted loop playsinline preload="none" poster="assets/poster-nft-2.jpg"><source src="assets/nft-render-2.mp4" type="video/mp4"></video></div>
@@ -566,9 +575,9 @@
         <div class="ctype">PHONE</div>
         <div class="cval">+55 (11) 98882-4060</div>
       </a>
-      <a class="c-card reveal" href="#">
-        <div class="ctype">LINKEDIN / GITHUB</div>
-        <div class="cval">add your link →</div>
+      <a class="c-card reveal" href="https://www.linkedin.com/in/jorg3-n3gr3iros/" target="_blank" rel="noopener">
+        <div class="ctype">LINKEDIN</div>
+        <div class="cval">in/jorg3-n3gr3iros ↗</div>
       </a>
     </div>
   </div>
@@ -580,6 +589,11 @@
     <span>Built with Unity-grade attention to detail.</span>
   </div>
 </footer>
+
+<div id="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <img src="" alt="Expanded view">
+</div>
 
 <script>
   // nav scroll state
@@ -594,6 +608,13 @@
     entries.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('in'),i*60);io.unobserve(en.target)}});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // lightbox
+  const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');
+  function openLb(src){lbImg.src=src;lb.classList.add('open');document.body.style.overflow='hidden'}
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src=''}
+  document.querySelectorAll('img.zoomable').forEach(im=>im.addEventListener('click',()=>openLb(im.currentSrc||im.src)));
+  lb.addEventListener('click',closeLb);
+  addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 </script>
 </body>
 </html>
