@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jorge Negreiros — Game &amp; Interactive Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0d;
+    --bg-2:#101216;
+    --surface:#14171c;
+    --surface-2:#181c22;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.16);
+    --text:#e9ebed;
+    --muted:#8a9098;
+    --muted-2:#5d636b;
+    --accent:#b8ff3a;
+    --accent-dim:#7fae29;
+    --cyan:#3ce0ff;
+    --magenta:#ff5cc8;
+    --radius:14px;
+    --maxw:1180px;
+    --mono:'JetBrains Mono',monospace;
+    --display:'Chakra Petch',sans-serif;
+    --body:'Sora',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* viewport grid + grain backdrop */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 80%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(12px);
+    background:rgba(10,11,13,.6);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, background .3s;
+  }
+  nav.scrolled{border-bottom-color:var(--line);background:rgba(10,11,13,.82)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.04em;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:9px;height:9px;background:var(--accent);border-radius:2px;box-shadow:0 0 12px var(--accent);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
+  .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{font-family:var(--mono);font-size:.78rem;color:var(--accent)!important;border:1px solid var(--accent-dim);padding:7px 14px;border-radius:7px;transition:all .2s}
+  .nav-cta:hover{background:var(--accent);color:#0a0b0d!important;box-shadow:0 0 18px rgba(184,255,58,.35)}
+  .nav-cta::after{display:none}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+  .burger span{width:24px;height:2px;background:var(--text);transition:.3s}
+
+  /* ===== HERO ===== */
+  header{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px}
+  .hero-glow{position:absolute;top:8%;right:-8%;width:560px;height:560px;border-radius:50%;
+    background:radial-gradient(circle,rgba(184,255,58,.10),transparent 65%);filter:blur(20px);z-index:-1}
+  .hero-glow.two{top:auto;bottom:5%;left:-12%;right:auto;width:480px;height:480px;
+    background:radial-gradient(circle,rgba(60,224,255,.07),transparent 65%)}
+  .status{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--line);padding:8px 16px;border-radius:30px;margin-bottom:34px;background:rgba(255,255,255,.02)}
+  .status .live{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 1.8s infinite}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(2.7rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.01em;margin-bottom:8px}
+  h1 .accent{color:var(--accent)}
+  .hero-role{font-family:var(--display);font-weight:500;font-size:clamp(1.1rem,2.4vw,1.7rem);color:var(--muted);letter-spacing:.02em;margin-bottom:28px}
+  .hero-role .sep{color:var(--accent-dim);margin:0 12px}
+  .hero-desc{max-width:620px;font-size:1.08rem;color:#c5c9ce;margin-bottom:40px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:14px 36px;font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:44px}
+  .hero-meta span{display:flex;align-items:center;gap:8px}
+  .hero-meta b{color:var(--text);font-weight:500}
+  .btn-row{display:flex;flex-wrap:wrap;gap:16px}
+  .btn{font-family:var(--mono);font-size:.86rem;text-decoration:none;padding:14px 26px;border-radius:9px;transition:all .22s;display:inline-flex;align-items:center;gap:10px}
+  .btn-primary{background:var(--accent);color:#0a0b0d;font-weight:500}
+  .btn-primary:hover{box-shadow:0 0 26px rgba(184,255,58,.4);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line-strong);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:100px 0;position:relative}
+  .label{font-family:var(--mono);font-size:.82rem;color:var(--accent);letter-spacing:.08em;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+  .label::before{content:"";width:28px;height:1px;background:var(--accent-dim)}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.01em;line-height:1.08;margin-bottom:24px}
+  .lead{max-width:680px;color:var(--muted);font-size:1.05rem}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:start}
+  .about-grid p{color:#c5c9ce;margin-bottom:20px;font-size:1.06rem}
+  .about-grid p strong{color:var(--text);font-weight:500}
+  .stat-stack{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .stat{background:var(--surface);padding:26px 28px}
+  .stat .num{font-family:var(--display);font-weight:700;font-size:2.5rem;color:var(--accent);line-height:1}
+  .stat .desc{font-family:var(--mono);font-size:.76rem;color:var(--muted);margin-top:8px;letter-spacing:.02em}
+
+  /* ===== SKILLS ===== */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:all .25s;position:relative;overflow:hidden}
+  .skill-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .skill-card:hover{border-color:var(--line-strong);transform:translateY(-4px);background:var(--surface-2)}
+  .skill-card:hover::before{transform:scaleX(1)}
+  .skill-card .idx{font-family:var(--mono);font-size:.74rem;color:var(--muted-2)}
+  .skill-card h3{font-family:var(--display);font-weight:600;font-size:1.18rem;margin:10px 0 12px;letter-spacing:.01em}
+  .skill-card p{color:var(--muted);font-size:.92rem;margin-bottom:16px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-family:var(--mono);font-size:.72rem;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);padding:5px 10px;border-radius:6px}
+  .tag.hl{color:var(--accent);border-color:var(--accent-dim)}
+
+  /* ===== EXPERIENCE ===== */
+  .timeline{margin-top:50px;position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--accent-dim),var(--line),transparent)}
+  .tl-item{position:relative;padding-bottom:50px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-34px;top:6px;width:13px;height:13px;border-radius:3px;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 12px rgba(184,255,58,.4)}
+  .tl-period{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.02em;margin-bottom:6px}
+  .tl-role{font-family:var(--display);font-weight:600;font-size:1.35rem;letter-spacing:.01em}
+  .tl-company{color:var(--muted);font-size:.98rem;margin-bottom:16px}
+  .tl-company b{color:var(--text);font-weight:500}
+  .tl-list{display:flex;flex-wrap:wrap;gap:8px}
+  .tl-list .tag{background:transparent}
+
+  /* ===== PROJECTS ===== */
+  .feature{margin-top:50px;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+  .feature-media{position:relative;min-height:380px;background:
+      repeating-linear-gradient(45deg,rgba(255,255,255,.015) 0 12px,transparent 12px 24px),
+      radial-gradient(circle at 30% 30%,rgba(184,255,58,.08),transparent 60%),
+      var(--bg-2);
+    display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line)}
+  .placeholder{text-align:center;color:var(--muted-2);font-family:var(--mono);font-size:.8rem;padding:20px}
+  .placeholder .ico{font-size:2rem;display:block;margin-bottom:12px;opacity:.5}
+  .placeholder .note{display:inline-block;margin-top:14px;color:var(--accent-dim);border:1px dashed var(--accent-dim);padding:6px 12px;border-radius:6px;font-size:.72rem}
+  .feature-body{padding:44px}
+  .feature-body .pill{font-family:var(--mono);font-size:.72rem;color:var(--accent);border:1px solid var(--accent-dim);padding:5px 11px;border-radius:20px;display:inline-block;margin-bottom:18px}
+  .feature-body h3{font-family:var(--display);font-weight:700;font-size:1.9rem;margin-bottom:8px}
+  .feature-body .sub{color:var(--muted);font-family:var(--mono);font-size:.82rem;margin-bottom:20px}
+  .feature-body p{color:#c5c9ce;margin-bottom:22px;font-size:1rem}
+  .feat-points{list-style:none;margin-bottom:26px;display:grid;gap:10px}
+  .feat-points li{position:relative;padding-left:22px;color:#c5c9ce;font-size:.95rem}
+  .feat-points li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:24px}
+  .proj-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+  .proj-card:hover{transform:translateY(-5px);border-color:var(--line-strong)}
+  .proj-thumb{height:200px;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(circle at 70% 20%,rgba(60,224,255,.06),transparent 55%),var(--bg-2)}
+  .proj-card:nth-child(2) .proj-thumb{background:radial-gradient(circle at 30% 30%,rgba(255,92,200,.06),transparent 55%),var(--bg-2)}
+  .proj-card:nth-child(3) .proj-thumb{background:radial-gradient(circle at 60% 70%,rgba(184,255,58,.07),transparent 55%),var(--bg-2)}
+  .proj-info{padding:26px;flex:1;display:flex;flex-direction:column}
+  .proj-info h4{font-family:var(--display);font-weight:600;font-size:1.25rem;margin-bottom:8px}
+  .proj-info p{color:var(--muted);font-size:.92rem;margin-bottom:18px;flex:1}
+  .proj-info .tags{margin-top:auto}
+
+  /* ===== CONTACT ===== */
+  .contact{text-align:center;padding:120px 0}
+  .contact h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:20px}
+  .contact .lead{margin:0 auto 44px}
+  .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:760px;margin:0 auto}
+  .c-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 22px;text-decoration:none;transition:all .25s;display:block}
+  .c-card:hover{border-color:var(--accent);transform:translateY(-4px);background:var(--surface-2)}
+  .c-card .ctype{font-family:var(--mono);font-size:.74rem;color:var(--accent);letter-spacing:.04em;margin-bottom:10px}
+  .c-card .cval{color:var(--text);font-size:.96rem;word-break:break-word}
+
+  footer{border-top:1px solid var(--line);padding:36px 0}
+  .foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    font-family:var(--mono);font-size:.76rem;color:var(--muted-2)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:36px}
+    .skills-grid{grid-template-columns:1fr}
+    .feature{grid-template-columns:1fr}
+    .feature-media{border-right:none;border-bottom:1px solid var(--line);min-height:260px}
+    .proj-grid{grid-template-columns:1fr}
+    .contact-cards{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg-2);padding:24px 28px;gap:20px;border-bottom:1px solid var(--line)}
+    .burger{display:flex}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span>JORGE NEGREIROS</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">// about</a>
+      <a href="#skills">// skills</a>
+      <a href="#experience">// experience</a>
+      <a href="#work">// work</a>
+      <a href="#contact" class="nav-cta">get in touch</a>
+    </div>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header>
+  <div class="hero-glow"></div>
+  <div class="hero-glow two"></div>
+  <div class="wrap">
+    <div class="status reveal"><span class="live"></span>Available for game &amp; interactive projects</div>
+    <h1 class="reveal">Building games &amp;<br><span class="accent">interactive worlds</span><br>in Unity.</h1>
+    <div class="hero-role reveal">Game Developer <span class="sep">/</span> Interactive Systems <span class="sep">/</span> Tools</div>
+    <p class="hero-desc reveal">10+ years shipping multiplayer games, VR &amp; sensor-based experiences, advergames and custom tooling — with a focus on performance, usability and clean, maintainable code.</p>
+    <div class="hero-meta reveal">
+      <span><b>10+</b> years in Unity / C#</span>
+      <span><b>São Paulo</b>, Brazil</span>
+      <span><b>Remote</b> · worldwide</span>
+    </div>
+    <div class="btn-row reveal">
+      <a href="#work" class="btn btn-primary">View selected work →</a>
+      <a href="#contact" class="btn btn-ghost">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="label reveal">01 — profile</div>
+    <div class="about-grid">
+      <div class="reveal">
+        <h2>A developer who ships, from concept to delivery.</h2>
+        <p>I'm a Unity developer with hands-on experience across <strong>game development</strong> and <strong>interactive applications</strong>. My work spans competitive multiplayer titles, VR and motion-based installations, advergames, and the internal tools and pipelines that make production faster.</p>
+        <p>I work well independently and within teams. Before writing code I focus on <strong>understanding the problem first</strong> — reducing complexity, avoiding rework, and keeping systems maintainable as they scale.</p>
+        <p>From gameplay mechanics and multiplayer networking to custom shaders and automated asset pipelines, I like owning a feature end to end.</p>
+      </div>
+      <div class="stat-stack reveal">
+        <div class="stat"><div class="num">10+</div><div class="desc">YEARS BUILDING WITH UNITY</div></div>
+        <div class="stat"><div class="num">3</div><div class="desc">STUDIOS · INCL. CO-FOUNDED</div></div>
+        <div class="stat"><div class="num">PC · VR</div><div class="desc">ANDROID · KINECT · MULTIPLAYER</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="label reveal">02 — capabilities</div>
+    <h2 class="reveal">What I build</h2>
+    <p class="lead reveal">A toolkit refined over a decade of real production — from the gameplay layer down to optimized real-time assets.</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="idx">[ 01 ]</div>
+        <h3>Gameplay &amp; Systems</h3>
+        <p>Core gameplay mechanics, game logic and interactive systems engineered for performance.</p>
+        <div class="tags">
+          <span class="tag hl">Unity</span><span class="tag hl">C#</span>
+          <span class="tag">Gameplay systems</span><span class="tag">Interactive apps</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="idx">[ 02 ]</div>
+        <h3>Multiplayer</h3>
+        <p>Competitive multiplayer integration, networking and live API/game-service integration.</p>
+        <div class="tags">
+          <span class="tag hl">Multiplayer</span><span class="tag">Networking</span>
+          <span class="tag">API integration</span><span class="tag">Live games</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="idx">[ 03 ]</div>
+        <h3>VR &amp; Sensor-based</h3>
+        <p>Virtual reality experiences and motion/sensor-driven interaction across platforms.</p>
+        <div class="tags">
+          <span class="tag hl">VR</span><span class="tag hl">Kinect</span>
+          <span class="tag">RFID</span><span class="tag">PC · Android</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="idx">[ 04 ]</div>
+        <h3>Shaders &amp; Graphics</h3>
+        <p>Custom real-time shaders and visual effects authored in Unity's Shader Graph.</p>
+        <div class="tags">
+          <span class="tag hl">Shader Graph</span><span class="tag">Custom shaders</span>
+          <span class="tag">VFX</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="idx">[ 05 ]</div>
+        <h3>Tools &amp; Pipelines</h3>
+        <p>Internal tools for game design and fully automated asset-generation pipelines.</p>
+        <div class="tags">
+          <span class="tag hl">Editor tools</span><span class="tag">Automation</span>
+          <span class="tag">NFT pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="idx">[ 06 ]</div>
+        <h3>3D &amp; Animation</h3>
+        <p>Real-time optimized 3D assets, plus character rigging, skinning and animation.</p>
+        <div class="tags">
+          <span class="tag hl">Blender</span><span class="tag">Rigging</span>
+          <span class="tag">Skinning</span><span class="tag">Animation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="label reveal">03 — experience</div>
+    <h2 class="reveal">Where I've worked</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-period">2023 — 2026</div>
+        <div class="tl-role">Senior Developer</div>
+        <div class="tl-company"><b>Bravo Ready</b> · BR1 Infinity (Unity, multiplayer)</div>
+        <div class="tl-list tags">
+          <span class="tag">Game mechanics</span><span class="tag">Multiplayer integration</span>
+          <span class="tag">Game-design tools</span><span class="tag">API integration</span>
+          <span class="tag">Shader Graph</span><span class="tag">NFT skin pipelines</span>
+          <span class="tag">Rigging &amp; animation</span>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">10+ YEARS</div>
+        <div class="tl-role">Senior Developer</div>
+        <div class="tl-company"><b>Nova Interativa</b> · Advergames &amp; interactive applications</div>
+        <div class="tl-list tags">
+          <span class="tag">Interactive games (PC · Android · VR)</span><span class="tag">Kinect</span>
+          <span class="tag">RFID integration</span><span class="tag">UI design</span>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-period">10+ YEARS</div>
+        <div class="tl-role">Co-founder</div>
+        <div class="tl-company"><b>Invectors Studios</b></div>
+        <div class="tl-list tags">
+          <span class="tag">Concept → delivery</span><span class="tag">Technical leadership</span>
+          <span class="tag">Problem-solving &amp; execution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK / PROJECTS ===== -->
+<section id="work">
+  <div class="wrap">
+    <div class="label reveal">04 — selected work</div>
+    <h2 class="reveal">Projects</h2>
+    <p class="lead reveal">A snapshot of titles, experiences and tools I've built. Swap the placeholders for your own screenshots, GIFs and build links.</p>
+
+    <!-- Featured -->
+    <div class="feature reveal">
+      <div class="feature-media">
+        <div class="placeholder">
+          <span class="ico">▱</span>
+          BR1_INFINITY · gameplay capture
+          <span class="note">↳ add screenshot / trailer here</span>
+        </div>
+      </div>
+      <div class="feature-body">
+        <span class="pill">FEATURED · MULTIPLAYER</span>
+        <h3>BR1 Infinity</h3>
+        <div class="sub">Senior Developer @ Bravo Ready · Unity</div>
+        <p>A multiplayer title built with the Unity engine. I worked across the gameplay and content layers — from core mechanics to the automated systems that fed the game's economy.</p>
+        <ul class="feat-points">
+          <li>Gameplay mechanics &amp; multiplayer integration</li>
+          <li>Internal tools for game design</li>
+          <li>Custom shaders authored in Shader Graph</li>
+          <li>Automated character &amp; weapon skin generation pipelines (NFT)</li>
+          <li>Character rigging, skinning &amp; animation</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Add project link →</a>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
+        <div class="proj-info">
+          <h4>Interactive Installations</h4>
+          <p>Advergames and interactive applications for PC, Android and VR — including Kinect motion-based experiences and RFID-integrated installs.</p>
+          <div class="tags"><span class="tag hl">Kinect</span><span class="tag">VR</span><span class="tag">RFID</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
+        <div class="proj-info">
+          <h4>Asset Generation Pipeline</h4>
+          <p>Fully automated pipelines that generate character and weapon skins at scale, turning manual art steps into a repeatable, hands-off process.</p>
+          <div class="tags"><span class="tag hl">Automation</span><span class="tag">Tooling</span><span class="tag">Pipeline</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
+        <div class="proj-info">
+          <h4>VR Experiences</h4>
+          <p>Immersive virtual reality applications and games — interaction design and real-time performance optimization for head-mounted displays.</p>
+          <div class="tags"><span class="tag hl">VR</span><span class="tag">Unity</span><span class="tag">Optimization</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><div class="placeholder"><span class="ico">◳</span>add media<span class="note">↳ screenshot / gif</span></div></div>
+        <div class="proj-info">
+          <h4>Your next project</h4>
+          <p>Add a personal game, jam entry, prototype or open-source tool here — anything that shows how you think and build.</p>
+          <div class="tags"><span class="tag">Add tags</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="label reveal" style="justify-content:center">05 — contact</div>
+    <h2 class="reveal">Let's build something.</h2>
+    <p class="lead reveal">Open to game development, interactive applications and tooling roles or freelance work — remote, worldwide.</p>
+    <div class="contact-cards">
+      <a class="c-card reveal" href="mailto:jorg3.n3gr3iros@email.com">
+        <div class="ctype">EMAIL</div>
+        <div class="cval">jorg3.n3gr3iros@email.com</div>
+      </a>
+      <a class="c-card reveal" href="tel:+5511988824060">
+        <div class="ctype">PHONE</div>
+        <div class="cval">+55 (11) 98882-4060</div>
+      </a>
+      <a class="c-card reveal" href="#">
+        <div class="ctype">LINKEDIN / GITHUB</div>
+        <div class="cval">add your link →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Jorge Negreiros — Game &amp; Interactive Developer</span>
+    <span>Built with Unity-grade attention to detail.</span>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  // mobile menu
+  const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.addEventListener('click',e=>{if(e.target.tagName==='A')links.classList.remove('open')});
+  // reveal on scroll
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('in'),i*60);io.unobserve(en.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
