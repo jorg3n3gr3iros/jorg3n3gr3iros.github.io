@@ -194,6 +194,14 @@
   /* responsive youtube */
   .yt{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}
   .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .yt-thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;text-decoration:none}
+  .yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.82;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .3s}
+  .yt-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45))}
+  .yt-thumb:hover img{transform:scale(1.05);opacity:1}
+  .yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:rgba(184,255,58,.92);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .25s,box-shadow .25s}
+  .yt-thumb:hover .yt-play{transform:translate(-50%,-50%) scale(1.12);box-shadow:0 0 28px rgba(184,255,58,.55)}
+  .yt-play svg{width:23px;height:23px;margin-left:3px;fill:#0a0b0d}
+  .yt-tag{position:absolute;bottom:11px;right:11px;z-index:2;font-family:var(--mono);font-size:.66rem;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:5px;letter-spacing:.04em}
   /* media gallery grids */
   .media-grid{display:grid;gap:18px;margin-top:8px}
   .mg-2{grid-template-columns:repeat(2,1fr)}
@@ -497,17 +505,17 @@
       </div>
       <div class="media-grid mg-3">
         <div class="yt-item">
-          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/88fLVLEmocI" title="Claw machine interactive system" allowfullscreen></iframe></div>
+          <a class="yt-thumb" href="https://www.youtube.com/watch?v=88fLVLEmocI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/88fLVLEmocI/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/88fLVLEmocI/hqdefault.jpg'" alt="Claw machine interactive system" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="yt-tag">YouTube ↗</span></a>
           <h4>Claw Machine System</h4>
           <p>A complete interactive claw-machine system built end to end.</p>
         </div>
         <div class="yt-item">
-          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/ZkEZt97ouX4" title="Immersive Meta Quest application" allowfullscreen></iframe></div>
+          <a class="yt-thumb" href="https://www.youtube.com/watch?v=ZkEZt97ouX4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ZkEZt97ouX4/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/ZkEZt97ouX4/hqdefault.jpg'" alt="Immersive Meta Quest application" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="yt-tag">YouTube ↗</span></a>
           <h4>Immersive VR · Meta Quest</h4>
           <p>An immersive application developed for the Meta Quest headset.</p>
         </div>
         <div class="yt-item">
-          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/RjFqgSYH3mo" title="Real-time interactive display" allowfullscreen></iframe></div>
+          <a class="yt-thumb" href="https://www.youtube.com/watch?v=RjFqgSYH3mo" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/RjFqgSYH3mo/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/RjFqgSYH3mo/hqdefault.jpg'" alt="Real-time interactive display" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="yt-tag">YouTube ↗</span></a>
           <h4>Real-time Interactive Display</h4>
           <p>Multi-display setup with live signing on one screen mirrored on another.</p>
         </div>
@@ -529,12 +537,12 @@
       </div>
       <div class="media-grid mg-2">
         <div class="yt-item">
-          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/xiQUFkW4_Qs?start=68" title="Games made with Invector assets" allowfullscreen></iframe></div>
+          <a class="yt-thumb" href="https://www.youtube.com/watch?v=xiQUFkW4_Qs&t=68s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/xiQUFkW4_Qs/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/xiQUFkW4_Qs/hqdefault.jpg'" alt="Games made with Invector assets" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="yt-tag">YouTube ↗</span></a>
           <h4>Built with Invector — Showcase</h4>
           <p>A showcase of games created by developers using Invector assets.</p>
         </div>
         <div class="yt-item">
-          <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/wbgq_4mfuvs?start=20" title="Cover system overview" allowfullscreen></iframe></div>
+          <a class="yt-thumb" href="https://www.youtube.com/watch?v=wbgq_4mfuvs&t=20s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/wbgq_4mfuvs/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/wbgq_4mfuvs/hqdefault.jpg'" alt="Cover system overview" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="yt-tag">YouTube ↗</span></a>
           <h4>Cover System — Overview</h4>
           <p>Technical overview of the cover-shooter system.</p>
         </div>
