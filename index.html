@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jorge Negreiros — Game &amp; Interactive Developer</title>
+  <title>Jorge Negreiros — Senior Unity Developer | VR, Multiplayer &amp; Interactive Experiences</title>
+  <meta name="description" content="Portfolio of Jorge Negreiros, Senior Unity Developer from Brazil with 12+ years building games, VR experiences, multiplayer systems, interactive installations and Unity tooling.">
+  <meta property="og:title" content="Jorge Negreiros — Senior Unity Developer">
+  <meta property="og:description" content="Games, VR, multiplayer systems, interactive installations and Unity tooling built with Unity and C#.">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -431,6 +435,45 @@
       max-width: 680px;
       color: var(--muted);
       font-size: 1.05rem
+    }
+
+
+    /* ===== HIGHLIGHTS ===== */
+    .highlights {
+      padding: 34px 0 24px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden
+    }
+
+    .highlight {
+      background: var(--surface);
+      padding: 22px 24px
+    }
+
+    .highlight b {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.12rem;
+      color: var(--text);
+      margin-bottom: 6px
+    }
+
+    .highlight span {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: .74rem;
+      line-height: 1.45
     }
 
     /* ===== ABOUT ===== */
@@ -863,7 +906,7 @@
     }
 
     .pb-desc {
-      max-width: 760px;
+      max-width: 960px;
       color: #c5c9ce;
       font-size: 1.04rem;
       margin-bottom: 30px
@@ -1178,9 +1221,9 @@
 
     .contact-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-      max-width: 760px;
+      max-width: 960px;
       margin: 0 auto
     }
 
@@ -1287,6 +1330,10 @@
         max-width: none
       }
 
+      .highlight-grid {
+        grid-template-columns: 1fr
+      }
+
       .contact-cards {
         grid-template-columns: 1fr
       }
@@ -1339,14 +1386,15 @@
     <div class="hero-glow"></div>
     <div class="hero-glow two"></div>
     <div class="wrap">
-      <div class="status reveal"><span class="live"></span>Available for game &amp; interactive projects</div>
-      <h1 class="reveal">Building games &amp;<br><span class="accent">interactive worlds</span><br>in Unity.</h1>
-      <div class="hero-role reveal">Game Developer <span class="sep">/</span> Interactive Systems <span
-          class="sep">/</span> Tools</div>
-      <p class="hero-desc reveal">10+ years shipping multiplayer games, VR &amp; sensor-based experiences, advergames
-        and custom tooling — with a focus on performance, usability and clean, maintainable code.</p>
+      <div class="status reveal"><span class="live"></span>Available for Unity, VR, multiplayer &amp; interactive projects</div>
+      <h1 class="reveal">Senior Unity developer<br><span class="accent">building games</span><br>&amp; interactive systems.</h1>
+      <div class="hero-role reveal">Unity Developer <span class="sep">/</span> Multiplayer <span
+          class="sep">/</span> VR &amp; Interactive Experiences</div>
+      <p class="hero-desc reveal">12+ years shipping Unity projects across multiplayer games, VR, sensor-based installations,
+        advergames and internal tools — with a focus on performance, usability and clean, maintainable code.</p>
       <div class="hero-meta reveal">
-        <span><b>10+</b> years in Unity / C#</span>
+        <span><b>12+</b> years in Unity / C#</span>
+        <span><b>Senior</b> game &amp; interactive developer</span>
         <span><b>São Paulo</b>, Brazil</span>
         <span><b>Remote</b> · worldwide</span>
       </div>
@@ -1357,14 +1405,39 @@
     </div>
   </header>
 
+
+  <!-- ===== HIGHLIGHTS ===== -->
+  <section class="highlights" aria-label="Professional highlights">
+    <div class="wrap">
+      <div class="highlight-grid reveal">
+        <div class="highlight">
+          <b>12+ years</b>
+          <span>Unity / C# production experience</span>
+        </div>
+        <div class="highlight">
+          <b>Multiplayer</b>
+          <span>Gameplay, networking and live systems</span>
+        </div>
+        <div class="highlight">
+          <b>VR &amp; sensors</b>
+          <span>Meta Quest, Kinect, RFID and events</span>
+        </div>
+        <div class="highlight">
+          <b>Co-founder</b>
+          <span>Invector Unity tools and templates</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== ABOUT ===== -->
   <section id="about">
     <div class="wrap">
       <div class="label reveal">PROFILE</div>
       <div class="about-grid">
         <div class="reveal">
-          <h2>A developer who ships, from concept to delivery.</h2>
-          <p>I'm a Unity developer with hands-on experience across <strong>game development</strong> and
+          <h2>A production-focused Unity developer, from prototype to delivery.</h2>
+          <p>I'm a senior Unity developer with hands-on experience across <strong>game development</strong> and
             <strong>interactive applications</strong>. My work spans competitive multiplayer titles, VR and motion-based
             installations, advergames, and the internal tools and pipelines that make production faster.
           </p>
@@ -1372,16 +1445,17 @@
               problem first</strong> — reducing complexity, avoiding rework, and keeping systems maintainable as they
             scale.</p>
           <p>From gameplay mechanics and multiplayer networking to custom shaders and automated asset pipelines, I like
-            owning a feature end to end.</p>
+            owning features end to end: understanding the need, building the system, testing edge cases and preparing it
+            for real production use.</p>
         </div>
         <div class="stat-stack reveal">
           <div class="stat">
-            <div class="num">10+</div>
+            <div class="num">12+</div>
             <div class="desc">YEARS BUILDING WITH UNITY</div>
           </div>
           <div class="stat">
             <div class="num">3</div>
-            <div class="desc">STUDIOS · INCL. CO-FOUNDED</div>
+            <div class="desc">STUDIOS · INCLUDING CO-FOUNDED INVECTOR</div>
           </div>
           <div class="stat">
             <div class="num">PC · VR</div>
@@ -1397,8 +1471,8 @@
     <div class="wrap">
       <div class="label reveal">CAPABILITIES</div>
       <h2 class="reveal">What I build</h2>
-      <p class="lead reveal">A toolkit refined over a decade of real production — from the gameplay layer down to
-        optimized real-time assets.</p>
+      <p class="lead reveal">A toolkit refined over a decade of real production — from gameplay and networking to
+        optimized real-time assets, tools and interactive hardware integrations.</p>
       <div class="skills-grid">
         <div class="skill-card reveal">
           <h3>Gameplay &amp; Systems</h3>
@@ -1410,7 +1484,7 @@
         </div>
         <div class="skill-card reveal">
           <h3>Multiplayer</h3>
-          <p>Competitive multiplayer integration, networking and live API/game-service integration.</p>
+          <p>Competitive multiplayer features, networking workflows and live API/game-service integration.</p>
           <div class="tags">
             <span class="tag hl">Multiplayer</span><span class="tag">Networking</span>
             <span class="tag">API integration</span><span class="tag">Live games</span>
@@ -1418,7 +1492,7 @@
         </div>
         <div class="skill-card reveal">
           <h3>VR &amp; Sensor-based</h3>
-          <p>Virtual reality experiences and motion/sensor-driven interaction across platforms.</p>
+          <p>Virtual reality experiences and motion/sensor-driven interactions for events, training and brand activations.</p>
           <div class="tags">
             <span class="tag hl">VR</span><span class="tag hl">Kinect</span>
             <span class="tag">RFID</span><span class="tag">PC · Android</span>
@@ -1434,7 +1508,7 @@
         </div>
         <div class="skill-card reveal">
           <h3>Tools &amp; Pipelines</h3>
-          <p>Internal tools for game design and fully automated asset-generation pipelines.</p>
+          <p>Internal tools for game design, content production and automated asset-generation pipelines.</p>
           <div class="tags">
             <span class="tag hl">Editor tools</span><span class="tag">Automation</span>
             <span class="tag">NFT pipelines</span>
@@ -1456,7 +1530,7 @@
   <section id="experience">
     <div class="wrap">
       <div class="label reveal">EXPERIENCE</div>
-      <h2 class="reveal">Where I've worked</h2>
+      <h2 class="reveal">Professional experience</h2>
       <div class="timeline">
         <div class="tl-item reveal">
           <div class="tl-period">2023 — 2026</div>
@@ -1496,7 +1570,7 @@
     <div class="wrap">
       <div class="label reveal">SELECTED WORK</div>
       <h2 class="reveal">Projects</h2>
-      <p class="lead reveal">Selected titles, interactive installations and tools — with real captures from production.
+      <p class="lead reveal">Selected titles, interactive installations and tools — organized by project, with real captures from production.
       </p>
 
       <!-- ===== 01 · BR1 INFINITY ===== -->
@@ -1509,14 +1583,15 @@
           </div>
           <a class="link-btn" href="https://www.br1game.com/" target="_blank" rel="noopener">BR1 Game ↗</a>
         </div>
-        <p class="pb-desc">A competitive multiplayer shooter built in Unity. I worked across gameplay systems, network
-          integration and optmization, hit registration system, inventory and loadout system, user API ,earning ,
-          level,NFT for character and weapons, loadout storage.
-          <br></br>
-          Support and artistic direction for the creation of characters, weapons, and skins. UI/UX.
-          <br></br>
-          Custom shaders and the automated content pipeline behind the game's in-game economy — owning features from
-          concept to ship.
+        <p class="pb-desc">A competitive multiplayer shooter built in Unity. My work covered gameplay systems,
+          networking integration, optimization, hit registration, inventory and loadout systems, API integration,
+          in-game economy features, level-related systems and NFT-based character and weapon content.
+          <br><br>
+          I also supported character, weapon, skin and UI/UX improvements, helping bridge technical implementation with
+          production needs.
+          <br><br>
+          The work included custom shaders and automated content pipelines connected to the game's in-game economy —
+          owning features from concept to delivery.
         </p>
         <div class="pb-tags tags">
           <span class="tag hl">Unity</span><span class="tag hl">Multiplayer</span><span class="tag">Gameplay
@@ -1578,9 +1653,9 @@
           <a class="link-btn" href="https://magiceden.io/marketplace/br1" target="_blank" rel="noopener">BR1 collection
             ↗</a>
         </div>
-        <p class="pb-desc">An automated pipeline that generates BR1 operative characters and weapon skins as NFTs —
-          trait-driven and rendered in-engine. It turned a manual art workflow into a repeatable, hands-off system that
-          produced the entire on-chain collection.</p>
+        <p class="pb-desc">An automated Unity pipeline for generating BR1 operative characters and weapon skins as NFTs —
+          trait-driven, rendered in-engine and designed to replace repetitive manual art/export work with a repeatable
+          production process.</p>
         <div class="pb-tags tags">
           <span class="tag hl">Automation</span><span class="tag">Render pipeline</span><span
             class="tag">Trait-driven</span><span class="tag">Unity Editor tools</span>
@@ -1610,8 +1685,9 @@
           <a class="link-btn" href="https://www.novainterativa.net/produtos/p%C3%AAnalti-interativo" target="_blank"
             rel="noopener">Kinect Penalty ↗</a>
         </div>
-        <p class="pb-desc">A decade of advergames and interactive experiences for PC, Android and VR — motion-based
-          (Kinect) games, real-time multi-display systems and immersive VR built for brands and live events.</p>
+        <p class="pb-desc">A decade of advergames and interactive applications for PC, Android and VR — including
+          motion-based Kinect games, RFID integrations, real-time multi-display systems and immersive VR experiences
+          built for brands, events and public activations.</p>
         <div class="pb-tags tags">
           <span class="tag hl">Kinect</span><span class="tag hl">VR</span><span class="tag">Meta Quest</span><span
             class="tag">RFID</span><span class="tag">Multi-display</span><span class="tag">Unity</span>
@@ -1660,8 +1736,9 @@
           </div>
           <a class="link-btn" href="https://www.invector.xyz/" target="_blank" rel="noopener">Invector Assets ↗</a>
         </div>
-        <p class="pb-desc">As co-founder of Invector, I helped build reusable Unity templates and gameplay systems —
-          third/first-person controllers and a cover system — used by other developers to kick-start their own games.
+        <p class="pb-desc">As co-founder of Invector, I helped create reusable Unity frameworks and gameplay systems —
+          including third/first-person controllers and a cover system — used by developers worldwide to prototype and
+          build their own games faster.
         </p>
         <div class="pb-tags tags">
           <span class="tag hl">Unity</span><span class="tag hl">C#</span><span class="tag">Character
@@ -1698,7 +1775,7 @@
     <div class="wrap">
       <div class="label reveal" style="justify-content:center">CONTACT</div>
       <h2 class="reveal">Let's build something.</h2>
-      <p class="lead reveal">Open to game development, interactive applications and tooling roles or freelance work —
+      <p class="lead reveal">Open to Unity game development, VR/MR, multiplayer, interactive applications and tooling roles —
         remote, worldwide.</p>
       <div class="contact-cards">
         <a class="c-card reveal" href="mailto:jorg3.n3gr3iros@gmail.com">
@@ -1713,13 +1790,17 @@
           <div class="ctype">LINKEDIN</div>
           <div class="cval">in/jorg3-n3gr3iros ↗</div>
         </a>
+        <a class="c-card reveal" href="https://github.com/jorg3n3gr3iros" target="_blank" rel="noopener">
+          <div class="ctype">GITHUB</div>
+          <div class="cval">github.com/jorg3n3gr3iros ↗</div>
+        </a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="foot-inner">
-      <span>© 2026 Jorge Negreiros — Game &amp; Interactive Developer</span>
+      <span>© 2026 Jorge Negreiros — Senior Unity Developer</span>
       <span>Built with Unity-grade attention to detail.</span>
       <span style="display:inline-flex;align-items:center;gap:7px;color:var(--accent)"><span
           style="width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)"></span>Portfolio
